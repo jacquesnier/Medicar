@@ -20,7 +20,7 @@ class MedicoViewSet(ModelViewSet):
         queryset = Medico.objects.all()
         serializer_class = MedicoSerializer
         filter_backends = [filters.SearchFilter]
-        search_fields = ['nome']
+        search_fields = ['nome', 'especialidade__nome']
         permission_classes = [permissions.IsAuthenticated]
 
 class AgendaViewSet(ModelViewSet):

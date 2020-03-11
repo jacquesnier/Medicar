@@ -44,10 +44,13 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_framework.authtoken',
     'rest_framework',
+    'django_filters',
     'medicar',
 ]
 
-SITE_ID = 1
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

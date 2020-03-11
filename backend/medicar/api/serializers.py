@@ -2,7 +2,7 @@ from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from medicar.models import Medico, Agenda, Especialidade, Horario
 from rest_framework.exceptions import ValidationError
-from datetime import date
+from datetime import date, datetime
 
 class HorarioSerializer(ModelSerializer):
 
@@ -20,7 +20,7 @@ class MedicoSerializer(ModelSerializer):
 
     class Meta:
         model = Medico
-        fields = ('__all__')
+        fields = ('nome', 'crm', 'email', 'telefone', 'especialidade')
         depth = 1
 
 class AgendaSerializer(ModelSerializer):
@@ -28,7 +28,6 @@ class AgendaSerializer(ModelSerializer):
     def validate(self, data):
         medico = data['medico']
         dia_marcado = data['dia']
-        horario = data['horario']
         data_atual = date.today()
 
         if data['dia'] < data_atual: 

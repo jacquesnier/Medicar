@@ -3,6 +3,8 @@ from medicar.models import Medico, Agenda, Especialidade,Horario
 from rest_framework import filters
 from .serializers import EspecialidadeSerializer ,MedicoSerializer, AgendaSerializer, HorarioSerializer
 from rest_framework import permissions
+from django_filters.rest_framework import DjangoFilterBackend
+from django_filters import MultipleChoiceFilter, ModelChoiceFilter
 
 class HorarioViewSet(ModelViewSet):
         queryset = Horario.objects.all()
@@ -19,8 +21,8 @@ class EspecialidadeViewSet(ModelViewSet):
 class MedicoViewSet(ModelViewSet):
         queryset = Medico.objects.all()
         serializer_class = MedicoSerializer
-        filter_backends = [filters.SearchFilter]
-        search_fields = ['nome', 'especialidade__nome']
+        filter_backends = [DjangoFilterBackend]
+        filterset_fields = ['nome', 'especialidade']
         permission_classes = [permissions.IsAuthenticated]
 
 class AgendaViewSet(ModelViewSet):

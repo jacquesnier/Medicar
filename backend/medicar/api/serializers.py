@@ -1,47 +1,30 @@
-from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from medicar.models import Medico, Agenda, Especialidade, Horario
-from rest_framework.exceptions import ValidationError
-from datetime import date, datetime
+from medicar.models import Medico, Agenda, Especialidade, Consulta
 
-class HorarioSerializer(ModelSerializer):
-
-    class Meta:
-        model = Horario
-        fields = ('__all__')
-
-class EspecialidadeSerializer(ModelSerializer):
+class EspecialidadeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Especialidade
         fields = ('__all__')
 
-class MedicoSerializer(ModelSerializer):
+class MedicoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Medico
-        fields = ('nome', 'crm', 'email', 'telefone', 'especialidade')
+        fields = ('__all__')
         depth = 1
 
-class AgendaSerializer(ModelSerializer):
-        
-    def validate(self, data):
-        medico = data['medico']
-        dia_marcado = data['dia']
-        data_atual = date.today()
-
-        if data['dia'] < data_atual: 
-            raise serializers.ValidationError({
-                'Não é permitido criar agendamento para um dia já passado!'
-            })
-
-        if Agenda.objects.filter(medico=medico, dia=dia_marcado).exists(): 
-            raise serializers.ValidationError({
-                'Não é permitido dois agendamentos para o mesmo médico em um mesmo dia!'
-            })
-        
-        return data
+class AgendaSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Agenda
         fields = ('__all__')
+
+class ConsultaSerializer(serializers.ModelSerializer):
+    paciente = serializers.StringRelatedField()
+    dia = serializers.StringRelatedField(read_only=True, source='agenda.dia')
+    horario = serializers.StringRelatedField(read_only=True, source='agenda.horario')
+
+    class Meta:
+        model = Consulta
+        fields = ('id', 'paciente', 'agenda', 'dia', 'horario', 'data_agendamento')

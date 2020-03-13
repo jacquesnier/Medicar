@@ -19,12 +19,15 @@ class AgendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agenda
         fields = ('__all__')
+        depth = 2
 
 class ConsultaSerializer(serializers.ModelSerializer):
-    paciente = serializers.StringRelatedField()
+    paciente = serializers.HiddenField(
+    default=serializers.CurrentUserDefault())
     dia = serializers.StringRelatedField(read_only=True, source='agenda.dia')
     horario = serializers.StringRelatedField(read_only=True, source='agenda.horario')
-
+    medico = MedicoSerializer(read_only=True, source='agenda.medico')
+    
     class Meta:
         model = Consulta
-        fields = ('id', 'paciente', 'agenda', 'dia', 'horario', 'data_agendamento')
+        fields = ('id', 'dia', 'horario', 'data_agendamento', 'medico', 'paciente', 'agenda')

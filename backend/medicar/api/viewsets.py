@@ -6,7 +6,7 @@ from rest_framework import permissions
 from django_filters.rest_framework import DjangoFilterBackend
 import datetime
 
-from .filters import MedicoFilter
+from .filters import MedicoFilter, AgendaFilter
 
 class EspecialidadeViewSet(ReadOnlyModelViewSet):
         queryset = Especialidade.objects.all()
@@ -25,12 +25,15 @@ class MedicoViewSet(ReadOnlyModelViewSet):
 class AgendaViewSet(ReadOnlyModelViewSet):
         queryset = Agenda.objects.all()
         serializer_class = AgendaSerializer
+        filter_class = AgendaFilter
+        filterset_fields = ['medico']
         permission_classes = [permissions.IsAuthenticated]
-        
+
         def get_queryset(self):
-                return Agenda.objects.all().filter(disponivel = True)
+                data_atual = datetime.date.today()
+                return Agenda.objects.all().filter(disponivel = True,  dia__gte=data_atual).order_by('dia', 'horario')
 
-
+        
 class ConsultaViewSet(ModelViewSet):
         serializer_class = ConsultaSerializer
         permission_classes = [permissions.IsAuthenticated]
@@ -38,7 +41,6 @@ class ConsultaViewSet(ModelViewSet):
         def get_queryset(self):
                 paciente = self.request.user
                 data_atual = datetime.date.today()
-                hora_atual = datetime.datetime.now().time()
                 queryset = Consulta.objects.all().filter(paciente=paciente, agenda__dia__gt=data_atual).order_by('agenda__dia', 'agenda__horario')
 
                 return queryset

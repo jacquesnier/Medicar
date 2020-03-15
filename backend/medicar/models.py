@@ -29,13 +29,13 @@ class Agenda(models.Model):
     disponivel = models.BooleanField(default=True)
 
     def clean(self):
-            data_atual = datetime.date.today()
-            hora_atual = datetime.datetime.now().time()
-
-            if self.dia < data_atual:
-                raise serializers.DjangoValidationError('Não é permitido criar agenda para dia passado!')
-            if (self.dia == data_atual) and (self.horario < hora_atual):
-                raise serializers.DjangoValidationError('Não é permitido criar agenda para horario passado!')
+        data_atual = datetime.date.today()
+        hora_atual = datetime.datetime.now().time()
+        
+        if self.dia < data_atual:
+            raise serializers.DjangoValidationError('Não é permitido criar agenda para dia passado!')
+        if (self.dia == data_atual) and (self.horario < hora_atual):
+            raise serializers.DjangoValidationError('Não é permitido criar agenda para horario passado!')
 
     def __str__(self):
         return "Medico: " + str(self.medico.nome) + ", Especialidade: " + str(self.medico.especialidade) + ", Dia: " + str(self.dia) + ", Horario: " + str(self.horario) + ", Disponibilidade: " + str(self.disponivel)

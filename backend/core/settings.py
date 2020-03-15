@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'django_filters',
-    'medicar',
+    'medicar.apps.MedicarConfig',
 ]
 
 REST_FRAMEWORK = {

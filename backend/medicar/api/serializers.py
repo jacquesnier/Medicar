@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from medicar.models import Medico, Agenda, Especialidade, Consulta
+import datetime
 
 class EspecialidadeSerializer(serializers.ModelSerializer):
 
@@ -27,6 +28,16 @@ class ConsultaSerializer(serializers.ModelSerializer):
     dia = serializers.StringRelatedField(read_only=True, source='agenda.dia')
     horario = serializers.StringRelatedField(read_only=True, source='agenda.horario')
     medico = MedicoSerializer(read_only=True, source='agenda.medico')
+    
+    def validate(self, data):
+        data_atual = datetime.date.today()
+        hora_atual = datetime.datetime.now().time()
+        agenda_selecionada = data['agenda']
+
+        if agenda_selecionada.dia < data_atual:
+            raise serializers.DjangoValidationError('Não foi possível marcar consulta: Dia passado!')
+        if (agenda_selecionada.dia == data_atual) and (agenda_selecionada.horario < hora_atual):
+            raise serializers.DjangoValidationError('Não foi possível marcar consulta: Horário passado!')
     
     class Meta:
         model = Consulta

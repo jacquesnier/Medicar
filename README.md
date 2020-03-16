@@ -1,6 +1,10 @@
 # API Medicar 
 > A API medicar é baseada em um sistema para gestão de consultas em uma clínica médica, na qual o administrador pode cadastrar médicos, agendas e especialidades, e o cliente pode marcar consultas para agenda e médico desejado.
 
+## Diagrama de Classe
+
+![](/gifs/diagrama-classe.png)
+
 ## Instalação
 O processo de instalação apresentado a seguir é para máquinas com o sistema operacional Linux.   
 

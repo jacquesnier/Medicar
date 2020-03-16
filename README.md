@@ -37,11 +37,43 @@ $ sudo apt-get install python3-pip
 ```sh
 $ sudo pip install virtualenv
 ```
+### Instalação do Projeto
+
+Após a configuração da máquina, pode-se instalar o projeto.
+
+Passo 1 - Download do projeto:
+
+![](/gifs/download-projeto.gif)
+
+Passo 2 - Criar virtualenv:
+
+![](/gifs/criar-env.gif)
+
+Passo 3 - instalar dependências:
+
+![](/gifs/instalar-dependencias.gif)
+
+Passo 4 - Executar migrate:
+
+![](/gifs/exec-migrate.gif)
+
+Passo 5 - Criar super usuário:
+
+![](/gifs/exec-createsuperuser.gif)
+
+Passo 6 - Executar aplicação:
+
+![](/gifs/exec-runserver.gif)
+
+Passo 7 - Acessar aplicação:
+
+Para abrir a aplicação basta acessar http://127.0.0.1:8000/ no seu navegador.
 
 ## Meta
 
-Jacques Nier Câmara  Marinho – [@YourFacebook](https://facebook.com/jacques.nier) – jacquesnier@gmail.com
+Jacques Nier – [@Facebook](https://facebook.com/jacques.nier) – jacquesnier@gmail.com
 
-#### Technologies
-- <img src="https://www.djangoproject.com/s/img/logos/django-logo-negative.png" width="68">
-- <img src="https://safenet.gemalto.com/uploadedImages/images/Logos/postgresql-logo.png" width="68">
+## Technologies
+- <img src="https://www.django-rest-framework.org/img/logo.png" width="90">
+- <img src="https://www.python.org/static/community_logos/python-logo.png" width="90">
+- <img src="https://blog.launchdarkly.com/wp-content/uploads/2018/10/visualstudio_code-card.png" width="90">

@@ -38,3 +38,4 @@ jobs:
         heroku_api_key: ${{ secrets.heroku_api_key }}
         heroku_email: ${{ secrets.heroku_email }}
         heroku_app_name: ${{ secrets.heroku_app_name }}
+        buildpack: heroku/python

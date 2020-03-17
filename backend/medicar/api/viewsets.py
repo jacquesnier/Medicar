@@ -9,6 +9,11 @@ import datetime
 from .filters import MedicoFilter, AgendaFilter
 
 class EspecialidadeViewSet(ReadOnlyModelViewSet):
+        """
+        get: É necessário usuário estar logado.
+        list: Retorna uma lista com todas as especialidades cadastradas.
+        read: Necessário informar o id da especialidade como parâmetro na url, e retorna as informações detalhadas da especialidade
+        """
         queryset = Especialidade.objects.all()
         serializer_class = EspecialidadeSerializer
         filter_backends = [filters.SearchFilter]
@@ -16,6 +21,13 @@ class EspecialidadeViewSet(ReadOnlyModelViewSet):
         permission_classes = [permissions.IsAuthenticated]
 
 class MedicoViewSet(ReadOnlyModelViewSet):
+        """
+        list: Retorna uma lista com todos o médicos cadastrados.
+        read: Necessário informar o id do médico como parâmetro na url, e retorna as informações detalhadas do médico
+        post:
+
+        """
+
         queryset = Medico.objects.all()
         serializer_class = MedicoSerializer
         filter_class = MedicoFilter
@@ -23,6 +35,11 @@ class MedicoViewSet(ReadOnlyModelViewSet):
         permission_classes = [permissions.IsAuthenticated]
 
 class AgendaViewSet(ReadOnlyModelViewSet):
+        """
+        get:
+        list: Retorna uma lista com todas as agendas disponíveis.
+        read: Necessário informar o id da agenda como parâmetro na url, e retorna as informações detalhadas da agenda
+        """
         queryset = Agenda.objects.all()
         serializer_class = AgendaSerializer
         filter_class = AgendaFilter
@@ -35,6 +52,14 @@ class AgendaViewSet(ReadOnlyModelViewSet):
 
         
 class ConsultaViewSet(ModelViewSet):
+        """
+        list: Retorna uma lista com todas as consultas marcadas para o usuário logado. Não exibe consultas passadas
+        read: Necessário informar o id da consulta como parâmetro na url, e retorna as informações da consulta
+        create: Cria uma nova consulta para o usuário logado. Retorna a consulta marcada 
+        update: Atualiza uma consulta já marcada para o usuário logado. Necessário informar o id da consulta como parâmetro na url. Retorna a consulta atualizada
+        partial_update: Atualiza uma consulta já marcada para o usuário logado. Necessário informar o id da consulta como parâmetro na url. Retorna a consulta atualizada
+        delete: Deleta uma consulta para o usuário logado. Necessário informar o id da consulta como parâmetro na url. Retorna a lista de consultas marcadas para usuário logado
+        """
         serializer_class = ConsultaSerializer
         permission_classes = [permissions.IsAuthenticated]
 

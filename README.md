@@ -2,9 +2,9 @@
 > A API medicar é baseada em um sistema para gestão de consultas em uma clínica médica, na qual o administrador pode cadastrar médicos, agendas e especialidades, e o cliente pode marcar consultas para agenda e médico desejado.
 
 ## Diagrama de Classe
-
+<p align="center">
 ![](/gifs/diagrama-classe.png)
-
+</p>
 ## Instalação
 O processo de instalação apresentado a seguir é para máquinas com o sistema operacional Linux.   
 
@@ -77,7 +77,8 @@ Para abrir a aplicação basta acessar http://127.0.0.1:8000/ no seu navegador.
 
 Jacques Nier – [@Facebook](https://facebook.com/jacques.nier) – jacquesnier@gmail.com
 
-## Technologies
+## Tecnologias
+
+- <img src="https://camo.githubusercontent.com/e34e1fd8b88a76ad738eff256a773aa6c69b412c/68747470733a2f2f7777772e646a616e676f70726f6a6563742e636f6d2f732f696d672f6c6f676f732f646a616e676f2d6c6f676f2d6e656761746976652e706e67" width="90">
 - <img src="https://www.django-rest-framework.org/img/logo.png" width="90">
 - <img src="https://www.python.org/static/community_logos/python-logo.png" width="90">
-- <img src="https://blog.launchdarkly.com/wp-content/uploads/2018/10/visualstudio_code-card.png" width="90">

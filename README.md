@@ -3,7 +3,7 @@
 
 ## Diagrama de Classe
 <p align="center">
-![](/gifs/diagrama-classe.png)
+  <img src="/gifs/diagrama-classe.png">
 </p>
 ## Instalação
 O processo de instalação apresentado a seguir é para máquinas com o sistema operacional Linux.   

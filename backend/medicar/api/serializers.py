@@ -38,7 +38,8 @@ class ConsultaSerializer(serializers.ModelSerializer):
             raise serializers.DjangoValidationError('Não foi possível marcar consulta: Dia passado!')
         if (agenda_selecionada.dia == data_atual) and (agenda_selecionada.horario < hora_atual):
             raise serializers.DjangoValidationError('Não foi possível marcar consulta: Horário passado!')
-    
+
+        return data
     class Meta:
         model = Consulta
         fields = ('id', 'dia', 'horario', 'data_agendamento', 'medico', 'paciente', 'agenda')

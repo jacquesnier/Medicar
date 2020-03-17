@@ -10,7 +10,6 @@ from .filters import MedicoFilter, AgendaFilter
 
 class EspecialidadeViewSet(ReadOnlyModelViewSet):
         """
-        get: É necessário usuário estar logado.
         list: Retorna uma lista com todas as especialidades cadastradas.
         read: Necessário informar o id da especialidade como parâmetro na url, e retorna as informações detalhadas da especialidade
         """
@@ -24,8 +23,6 @@ class MedicoViewSet(ReadOnlyModelViewSet):
         """
         list: Retorna uma lista com todos o médicos cadastrados.
         read: Necessário informar o id do médico como parâmetro na url, e retorna as informações detalhadas do médico
-        post:
-
         """
 
         queryset = Medico.objects.all()
@@ -36,7 +33,6 @@ class MedicoViewSet(ReadOnlyModelViewSet):
 
 class AgendaViewSet(ReadOnlyModelViewSet):
         """
-        get:
         list: Retorna uma lista com todas as agendas disponíveis.
         read: Necessário informar o id da agenda como parâmetro na url, e retorna as informações detalhadas da agenda
         """

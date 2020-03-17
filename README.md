@@ -73,6 +73,10 @@ Passo 7 - Acessar aplicação:
 
 Para abrir a aplicação basta acessar http://127.0.0.1:8000/ no seu navegador.
 
+## Documentação
+
+Para consultar a documentação da aplicação basta acessar a página https://medicar-app.herokuapp.com/docs/ no seu navegador.
+
 ## Meta
 
 Jacques Nier – [@Facebook](https://facebook.com/jacques.nier) – jacquesnier@gmail.com

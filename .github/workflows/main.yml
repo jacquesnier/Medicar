@@ -31,6 +31,9 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: django check
       run: python backend/manage.py check
+    
+    - name: django migrate
+      run: python backend/manage.py migrate
       
     - name: Deploy to Heroku
       uses: AkhileshNS/heroku-deploy@v3.0.0

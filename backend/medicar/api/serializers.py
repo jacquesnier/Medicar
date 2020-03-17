@@ -34,12 +34,17 @@ class ConsultaSerializer(serializers.ModelSerializer):
         hora_atual = datetime.datetime.now().time()
         agenda_selecionada = data['agenda']
 
+        consulta_paciente = Consulta.objects.all().filter(paciente=data['paciente'])
+
         if agenda_selecionada.dia < data_atual:
             raise serializers.DjangoValidationError('Não foi possível marcar consulta: Dia passado!')
         if (agenda_selecionada.dia == data_atual) and (agenda_selecionada.horario < hora_atual):
             raise serializers.DjangoValidationError('Não foi possível marcar consulta: Horário passado!')
-
+        if consulta_paciente.filter(agenda__dia=agenda_selecionada.dia, agenda__horario=agenda_selecionada.horario):
+            raise serializers.DjangoValidationError('Não foi possível marcar consulta: Há uma outra consulta marcada para mesmo dia e horário!')
+    
         return data
+
     class Meta:
         model = Consulta
         fields = ('id', 'dia', 'horario', 'data_agendamento', 'medico', 'paciente', 'agenda')
